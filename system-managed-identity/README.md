@@ -45,7 +45,7 @@ This is a sample to demo how to connect a .net core application hosting in Azure
    # connect webapp and appconfigure
    az webapp connection create appconfig -g <myResourceGroupName> -n <myWebAppName> --app-config <myAppConfigStoreName> --tg <myResourceGroupName> --connection <myConnectioName> --system-identity
    ```
-   `system-identity` is authentication type, other supported authentication types: user assigned Managed Identity; connection string; service principal, please refer to [more samples](https://github.com/yungezz/serviceconnector-webapp-appconfig-dotnet/).   
+   `system-identity` is authentication type, other supported authentication types: user assigned Managed Identity; connection string; service principal, please refer to [more samples](https://github.com/Azure-Samples/serviceconnector-webapp-appconfig-dotnet/).   
 
 1. Build and Deploy App to Azure. Use below steps or any approach you're familiar with to build and publish to Azure WebApp.
    1. Clone the sample repo
@@ -82,8 +82,8 @@ This is a sample to demo how to connect a .net core application hosting in Azure
 ## How it works
 Service Connector service do the connection configuration for you. 
 - set WebApp Appsetting `AZURE_APPCONFIGURATION_ENDPOINT`, 
-so the application could read it to get app configuration endpoint in [code](https://github.com/yungezz/serviceconnector-webapp-appconfig-dotnet/blob/main/system-managed-identity/Microsoft.Azure.ServiceConnector.Sample/Program.cs#L37);
-- enable WebApp system Managed Identity and grant App Configuration Data Reader role to it, so the application could be authenticated to the App Configuration in [code](https://github.com/yungezz/serviceconnector-webapp-appconfig-dotnet/blob/main/system-managed-identity/Microsoft.Azure.ServiceConnector.Sample/Program.cs#L43), by using `DefaultAzureCredential` from [Azure.Identity](https://azuresdkdocs.blob.core.windows.net/$web/dotnet/Azure.Identity/1.0.0/api/index.html).
+so the application could read it to get app configuration endpoint in [code](https://github.com/Azure-Samples/serviceconnector-webapp-appconfig-dotnet/blob/main/system-managed-identity/Microsoft.Azure.ServiceConnector.Sample/Program.cs#L37);
+- enable WebApp system Managed Identity and grant App Configuration Data Reader role to it, so the application could be authenticated to the App Configuration in [code](https://github.com/Azure-Samples/serviceconnector-webapp-appconfig-dotnet/blob/main/system-managed-identity/Microsoft.Azure.ServiceConnector.Sample/Program.cs#L43), by using `DefaultAzureCredential` from [Azure.Identity](https://azuresdkdocs.blob.core.windows.net/$web/dotnet/Azure.Identity/1.0.0/api/index.html).
 - Learn more about the detail from [Service Connector Internal](https://docs.microsoft.com/en-us/azure/service-connector/concept-service-connector-internals).
 
 ## Test (optional)

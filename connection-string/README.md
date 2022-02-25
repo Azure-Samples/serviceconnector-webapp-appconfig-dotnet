@@ -45,7 +45,7 @@ This is a sample to demo how to connect a .net core application hosting in Azure
    # connect webapp and appconfigure
    az webapp connection create appconfig -g <myResourceGroupName> -n <myWebAppName> --app-config <myAppConfigStoreName> --tg <myResourceGroupName> --connection <myConnectioName> --secret
    ```
-   `secret` is authentication type, other supported authentication types: system managed identity, user assigned Managed Identity; service principal, please refer to [more samples](https://github.com/yungezz/serviceconnector-webapp-appconfig-dotnet/).   
+   `secret` is authentication type, other supported authentication types: system managed identity, user assigned Managed Identity; service principal, please refer to [more samples](https://github.com/Azure-Samples/serviceconnector-webapp-appconfig-dotnet/).   
 
 1. Build and Deploy App to Azure. Use below steps or any approach you're familiar with to build and publish to Azure WebApp.
    1. Clone the sample repo
@@ -82,7 +82,7 @@ This is a sample to demo how to connect a .net core application hosting in Azure
 ## How it works
 Service Connector service do the connection configuration for you. 
 - set WebApp Appsetting `AZURE_APPCONFIGURATION_CONNECTIONSTRING`, 
-so the application could use it to connect to the App Configuration in [code](https://github.com/yungezz/serviceconnector-webapp-appconfig-dotnet/blob/main/connection-string/Microsoft.Azure.ServiceConnector.Sample/Program.cs#L37-L43).
+so the application could use it to connect to the App Configuration in [code](https://github.com/Azure-Samples/serviceconnector-webapp-appconfig-dotnet/blob/main/connection-string/Microsoft.Azure.ServiceConnector.Sample/Program.cs#L37-L43).
 - Learn more about the detail from [Service Connector Internal](https://docs.microsoft.com/en-us/azure/service-connector/concept-service-connector-internals).
 
 ## Test (optional)
