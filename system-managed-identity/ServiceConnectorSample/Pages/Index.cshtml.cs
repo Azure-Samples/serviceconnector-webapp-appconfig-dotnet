@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Azure.ServiceConnector.Sample.Pages
+﻿namespace ServiceConnectorSample.Pages
 {
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.Extensions.Options;

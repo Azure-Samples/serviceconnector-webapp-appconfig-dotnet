@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Azure.ServiceConnector.Sample
+﻿namespace ServiceConnectorSample
 {
     public class Settings
     {
