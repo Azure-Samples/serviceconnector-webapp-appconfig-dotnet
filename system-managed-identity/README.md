@@ -28,9 +28,9 @@ This is a sample to demo how to connect a .net core application hosting in Azure
    # create appservice plan
    az appservice plan create -g <myResourceGroupName> -n <myPlanName> --is-linux --sku B1
    # create webapp
-   az webapp create -g <myResourceGroupName> -n <myWebAppName> --runtime "DOTNETCORE|6.0" --plan <myPlanName>
+   az webapp create -g <myResourceGroupName> -n <myWebAppName> --runtime '"DOTNETCORE|6.0"' --plan <myPlanName>
    ```
-   1. Create Azure App Configuration Store, import test configuration file [./sampleconfigs.json](./sampleconfigs.json).
+   1. Create Azure App Configuration Store, import test configuration file [./sampleconfigs.json](./ServiceConnectorSample/sampleconfigs.json).
       If using Cloudshell, [upload sampleconfigs.json](https://docs.microsoft.com/en-us/azure/cloud-shell/persisting-shell-storage#upload-files) before run the command.
    ```bash
    # create app configuration store
@@ -54,8 +54,8 @@ This is a sample to demo how to connect a .net core application hosting in Azure
       ```
    1. cd to the folder `serviceconnector-webapp-appconfig-dotnet\system-managed-identity\ServiceConnectorSample`, do build
       ```bash
-      cd serviceconnector-webapp-appconfig-dotnet\system-managed-identity\Microsoft.Azure.ServiceConnector.Sample
-      dotnet publish .\Microsoft.Azure.ServiceConnector.Sample.csproj -c Release
+      cd serviceconnector-webapp-appconfig-dotnet\system-managed-identity\ServiceConnectorSample
+      dotnet publish .\ServiceConnectorSample.csproj -c Release
       ```
    1. Deploy to the Azure Web App.
    Recommend to use Visual Studio or VSCode.
@@ -67,7 +67,7 @@ This is a sample to demo how to connect a .net core application hosting in Azure
       - Azure CLI.
         ```bash
         # set deplyment project in Azure WebApp to this project in sample repo.
-        az webapp config appsettings set -g <myResourceGroupName> -n <myWebAppName> --settings PROJECT=system-managed-identity/Microsoft.Azure.ServiceConnector.Sample/Microsoft.Azure.ServiceConnector.Sample.csproj
+        az webapp config appsettings set -g <myResourceGroupName> -n <myWebAppName> --settings PROJECT=system-managed-identity/ServiceConnectorSample/ServiceConnectorSample.csproj
         # config deployment source to local git repo
         az webapp deployment source config-local-git -g <myResourceGroupName> -n <myWebAppName>
         # get publish credential
@@ -82,8 +82,8 @@ This is a sample to demo how to connect a .net core application hosting in Azure
 ## How it works
 Service Connector service do the connection configuration for you. 
 - set WebApp Appsetting `AZURE_APPCONFIGURATION_ENDPOINT`, 
-so the application could read it to get app configuration endpoint in [code](https://github.com/Azure-Samples/serviceconnector-webapp-appconfig-dotnet/blob/main/system-managed-identity/Microsoft.Azure.ServiceConnector.Sample/Program.cs#L37);
-- enable WebApp system Managed Identity and grant App Configuration Data Reader role to it, so the application could be authenticated to the App Configuration in [code](https://github.com/Azure-Samples/serviceconnector-webapp-appconfig-dotnet/blob/main/system-managed-identity/Microsoft.Azure.ServiceConnector.Sample/Program.cs#L43), by using `DefaultAzureCredential` from [Azure.Identity](https://azuresdkdocs.blob.core.windows.net/$web/dotnet/Azure.Identity/1.0.0/api/index.html).
+so the application could read it to get app configuration endpoint in [code](https://github.com/Azure-Samples/serviceconnector-webapp-appconfig-dotnet/blob/main/system-managed-identity/ServiceConnectorSample/Program.cs#L10);
+- enable WebApp system Managed Identity and grant App Configuration Data Reader role to it, so the application could be authenticated to the App Configuration in [code](https://github.com/Azure-Samples/serviceconnector-webapp-appconfig-dotnet/blob/main/system-managed-identity/ServiceConnectorSample/Program.cs#L13), by using `DefaultAzureCredential` from [Azure.Identity](https://azuresdkdocs.blob.core.windows.net/$web/dotnet/Azure.Identity/1.0.0/api/index.html).
 - Learn more about the detail from [Service Connector Internal](https://docs.microsoft.com/en-us/azure/service-connector/concept-service-connector-internals).
 
 ## Test (optional)
