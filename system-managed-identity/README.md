@@ -28,7 +28,7 @@ This is a sample to demo how to connect a .net core application hosting in Azure
    # create appservice plan
    az appservice plan create -g <myResourceGroupName> -n <myPlanName> --is-linux --sku B1
    # create webapp
-   az webapp create -g <myResourceGroupName> -n <myWebAppName> --runtime "DOTNETCORE|3.1" --plan <myPlanName>
+   az webapp create -g <myResourceGroupName> -n <myWebAppName> --runtime "DOTNETCORE|6.0" --plan <myPlanName>
    ```
    1. Create Azure App Configuration Store, import test configuration file [./sampleconfigs.json](./sampleconfigs.json).
       If using Cloudshell, [upload sampleconfigs.json](https://docs.microsoft.com/en-us/azure/cloud-shell/persisting-shell-storage#upload-files) before run the command.
@@ -52,7 +52,7 @@ This is a sample to demo how to connect a .net core application hosting in Azure
       ```bash
       git clone https://github.com/Azure-Samples/serviceconnector-webapp-appconfig-dotnet.git
       ```
-   1. cd to the folder `serviceconnector-webapp-appconfig-dotnet\system-managed-identity\Microsoft.Azure.ServiceConnector.Sample`, do build
+   1. cd to the folder `serviceconnector-webapp-appconfig-dotnet\system-managed-identity\ServiceConnectorSample`, do build
       ```bash
       cd serviceconnector-webapp-appconfig-dotnet\system-managed-identity\Microsoft.Azure.ServiceConnector.Sample
       dotnet publish .\Microsoft.Azure.ServiceConnector.Sample.csproj -c Release
