@@ -1,17 +1,15 @@
-﻿//using Microsoft.FeatureManagement;
-using Azure.Identity;
-using ServiceConnectorSample;
+﻿using ServiceConnectorSample;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Load configuration from Azure App ConfigurationF
 builder.Configuration.AddAzureAppConfiguration(options =>
 {
-    // Service Connector configured AZURE_APPCONFIGURATION_ENDPOINT at Azure WebApp's AppSetting already.
-    string appConfigurationEndpoint = Environment.GetEnvironmentVariable("AZURE_APPCONFIGURATION_ENDPOINT");
-    if (!string.IsNullOrEmpty(appConfigurationEndpoint))
+    // Service Connector configured AZURE_APPCONFIGURATION_CONNECTIONSTRING at Azure WebApp's AppSetting already.
+    string connectStr = Environment.GetEnvironmentVariable("AZURE_APPCONFIGURATION_CONNECTIONSTRING");
+    if (!string.IsNullOrEmpty(connectStr))
     {
-        options.Connect(new Uri(appConfigurationEndpoint), new DefaultAzureCredential())
+        options.Connect(connectStr)
                // Load all keys that start with `WebDemo:` and have no label
                .Select("SampleApplication:*")
                // Configure to reload configuration if the registered key 'SampleApplication:Settings:Messages' is modified.

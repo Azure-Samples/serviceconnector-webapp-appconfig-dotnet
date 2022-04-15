@@ -42,6 +42,8 @@ This is a sample to demo how to connect a .net core application hosting in Azure
 
 1. Create connection between the WebApp and App Configuration by auth type system assigned Managed Identity via Service Connector.
    ```bash
+   # register ServiceLinker provider
+   az provider register -n Microsoft.ServiceLinker
    # connect webapp and appconfigure
    az webapp connection create appconfig -g <myResourceGroupName> -n <myWebAppName> --app-config <myAppConfigStoreName> --tg <myResourceGroupName> --connection <myConnectioName> --system-identity
    ```
