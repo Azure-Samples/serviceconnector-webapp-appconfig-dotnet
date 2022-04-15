@@ -45,6 +45,8 @@ This is a sample to demo how to connect a .net core application hosting in Azure
 
 1. Create connection between the WebApp and App Configuration authenticating with service principal via Service Connector.
    ```bash
+   # register ServiceLinker provider
+   az provider register -n Microsoft.ServiceLinker
    # connect webapp and appconfigure
    az webapp connection create appconfig -g <myResourceGroupName> -n <myWebAppName> --app-config <myAppConfigStoreName> --tg <myResourceGroupName> --connection <myConnectioName> --service-principal client-id=<mySPClientId>  secret=<mySPSecret>
    ```
@@ -56,10 +58,10 @@ This is a sample to demo how to connect a .net core application hosting in Azure
       ```bash
       git clone https://github.com/Azure-Samples/serviceconnector-webapp-appconfig-dotnet.git
       ```
-   1. cd to the folder `serviceconnector-webapp-appconfig-dotnet\service-principal\Microsoft.Azure.ServiceConnector.Sample`, do build
+   1. cd to the folder `serviceconnector-webapp-appconfig-dotnet\service-principal\ServiceConnectorSample`, do build
       ```bash
-      cd serviceconnector-webapp-appconfig-dotnet\service-principal\Microsoft.Azure.ServiceConnector.Sample
-      dotnet publish .\Microsoft.Azure.ServiceConnector.Sample.csproj -c Release
+      cd serviceconnector-webapp-appconfig-dotnet\service-principal\ServiceConnectorSample
+      dotnet publish .\ServiceConnectorSample.csproj -c Release
       ```
    1. Deploy to the Azure Web App.
    Recommend to use Visual Studio or VSCode.
@@ -71,7 +73,7 @@ This is a sample to demo how to connect a .net core application hosting in Azure
       - Azure CLI.
         ```bash
         # set deplyment project in Azure WebApp to this project in sample repo.
-        az webapp config appsettings set -g <myResourceGroupName> -n <myWebAppName> --settings PROJECT=service-principal/Microsoft.Azure.ServiceConnector.Sample/Microsoft.Azure.ServiceConnector.Sample.csproj
+        az webapp config appsettings set -g <myResourceGroupName> -n <myWebAppName> --settings PROJECT=service-principal/ServiceConnectorSample/ServiceConnectorSample.csproj
         # config deployment source to local git repo
         az webapp deployment source config-local-git -g <myResourceGroupName> -n <myWebAppName>
         # get publish credential
@@ -86,8 +88,8 @@ This is a sample to demo how to connect a .net core application hosting in Azure
 ## How it works
 Service Connector service do the connection configuration for you. 
 - set WebApp Appsetting `AZURE_APPCONFIGURATION_ENDPOINT`, 
-so the application could read it to get app configuration endpoint in [code](https://github.com/Azure-Samples/serviceconnector-webapp-appconfig-dotnet/blob/main/service-principal/Microsoft.Azure.ServiceConnector.Sample/Program.cs#L37);
-- save service principal credential to WebApp AppSettings `AZURE_APPCONFIGURATION_CLIENTID`. `AZURE_APPCONFIGURATION_TENANTID`, `AZURE_APPCONFIGURATION_CLIENTSECRET` and grant App Configuration Data Reader role to the service principal, so the application could be authenticated to the App Configuration in [code](https://github.com/Azure-Samples/serviceconnector-webapp-appconfig-dotnet/blob/main/service-principal/Microsoft.Azure.ServiceConnector.Sample/Program.cs#L38-L48), by using `ClientSecretCredential` from [Azure.Identity](https://azuresdkdocs.blob.core.windows.net/$web/dotnet/Azure.Identity/1.0.0/api/index.html).
+so the application could read it to get app configuration endpoint in [code](https://github.com/Azure-Samples/serviceconnector-webapp-appconfig-dotnet/blob/main/service-principal/ServiceConnectorSample/Program.cs#L10);
+- save service principal credential to WebApp AppSettings `AZURE_APPCONFIGURATION_CLIENTID`. `AZURE_APPCONFIGURATION_TENANTID`, `AZURE_APPCONFIGURATION_CLIENTSECRET` and grant App Configuration Data Reader role to the service principal, so the application could be authenticated to the App Configuration in [code](https://github.com/Azure-Samples/serviceconnector-webapp-appconfig-dotnet/blob/main/service-principal/ServiceConnectorSample/Program.cs#L11-L18), by using `ClientSecretCredential` from [Azure.Identity](https://azuresdkdocs.blob.core.windows.net/$web/dotnet/Azure.Identity/1.0.0/api/index.html).
 - Learn more about the detail from [Service Connector Internal](https://docs.microsoft.com/en-us/azure/service-connector/concept-service-connector-internals).
 
 

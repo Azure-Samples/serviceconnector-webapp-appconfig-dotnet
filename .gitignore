@@ -350,3 +350,5 @@ MigrationBackup/
 .ionide/
 
 launchSettings.json
+Properties/
+output.zip

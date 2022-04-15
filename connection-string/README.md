@@ -42,6 +42,8 @@ This is a sample to demo how to connect a .net core application hosting in Azure
 
 1. Create connection between the WebApp and App Configuration by auth type connection string via Service Connector.
    ```bash
+   # register ServiceLinker provider
+   az provider register -n Microsoft.ServiceLinker
    # connect webapp and appconfigure
    az webapp connection create appconfig -g <myResourceGroupName> -n <myWebAppName> --app-config <myAppConfigStoreName> --tg <myResourceGroupName> --connection <myConnectioName> --secret
    ```
@@ -52,10 +54,10 @@ This is a sample to demo how to connect a .net core application hosting in Azure
       ```bash
       git clone https://github.com/Azure-Samples/serviceconnector-webapp-appconfig-dotnet.git
       ```
-   1. cd to the folder `serviceconnector-webapp-appconfig-dotnet\connection-string\Microsoft.Azure.ServiceConnector.Sample`, do build
+   1. cd to the folder `serviceconnector-webapp-appconfig-dotnet\connection-string\ServiceConnectorSample`, do build
       ```bash
-      cd serviceconnector-webapp-appconfig-dotnet\connection-string\Microsoft.Azure.ServiceConnector.Sample
-      dotnet publish .\Microsoft.Azure.ServiceConnector.Sample.csproj -c Release
+      cd serviceconnector-webapp-appconfig-dotnet\connection-string\ServiceConnectorSample
+      dotnet publish .\ServiceConnectorSample.csproj -c Release
       ```
    1. Deploy to the Azure Web App.
    Recommend to use Visual Studio or VSCode.
@@ -67,7 +69,7 @@ This is a sample to demo how to connect a .net core application hosting in Azure
       - Azure CLI.
         ```bash
         # set deplyment project in Azure WebApp to this project in sample repo.
-        az webapp config appsettings set -g <myResourceGroupName> -n <myWebAppName> --settings PROJECT=connection-string/Microsoft.Azure.ServiceConnector.Sample/Microsoft.Azure.ServiceConnector.Sample.csproj
+        az webapp config appsettings set -g <myResourceGroupName> -n <myWebAppName> --settings PROJECT=connection-string/ServiceConnectorSample/ServiceConnectorSample.csproj
         # config deployment source to local git repo
         az webapp deployment source config-local-git -g <myResourceGroupName> -n <myWebAppName>
         # get publish credential
@@ -82,7 +84,7 @@ This is a sample to demo how to connect a .net core application hosting in Azure
 ## How it works
 Service Connector service do the connection configuration for you. 
 - set WebApp Appsetting `AZURE_APPCONFIGURATION_CONNECTIONSTRING`, 
-so the application could use it to connect to the App Configuration in [code](https://github.com/Azure-Samples/serviceconnector-webapp-appconfig-dotnet/blob/main/connection-string/Microsoft.Azure.ServiceConnector.Sample/Program.cs#L37-L43).
+so the application could use it to connect to the App Configuration in [code](https://github.com/Azure-Samples/serviceconnector-webapp-appconfig-dotnet/blob/main/connection-string/ServiceConnectorSample/Program.cs#L9-L12).
 - Learn more about the detail from [Service Connector Internal](https://docs.microsoft.com/en-us/azure/service-connector/concept-service-connector-internals).
 
 ## Test (optional)
