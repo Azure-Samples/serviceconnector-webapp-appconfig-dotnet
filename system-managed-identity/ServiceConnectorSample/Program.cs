@@ -1,5 +1,4 @@
-﻿//using Microsoft.FeatureManagement;
-using Azure.Identity;
+﻿using Azure.Identity;
 using ServiceConnectorSample;
 
 var builder = WebApplication.CreateBuilder(args);
