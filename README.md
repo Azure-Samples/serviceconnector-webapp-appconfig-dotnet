@@ -3,7 +3,7 @@ page_type: sample
 languages:
 - csharp
 products:
-- service connector
+- service-connector
 description: "Sample projects to connect Azure WebApp to App Configuration via Service Connector"
 urlFragment: "serviceconnector-webapp-appconfig-dotnet"
 ---
