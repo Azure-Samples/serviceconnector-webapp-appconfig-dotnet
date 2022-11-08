@@ -2,7 +2,7 @@
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Load configuration from Azure App ConfigurationF
+// Load configuration from Azure App Configuration
 builder.Configuration.AddAzureAppConfiguration(options =>
 {
     // Service Connector configured AZURE_APPCONFIGURATION_CONNECTIONSTRING at Azure WebApp's AppSetting already.
@@ -10,7 +10,7 @@ builder.Configuration.AddAzureAppConfiguration(options =>
     if (!string.IsNullOrEmpty(connectStr))
     {
         options.Connect(connectStr)
-               // Load all keys that start with `WebDemo:` and have no label
+               // Load all keys that start with `SampleApplication:` and have no label
                .Select("SampleApplication:*")
                // Configure to reload configuration if the registered key 'SampleApplication:Settings:Messages' is modified.
                // Use the default cache expiration of 30 seconds. It can be overriden via AzureAppConfigurationRefreshOptions.SetCacheExpiration.
